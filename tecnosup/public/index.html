@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technosup </title>
+  <style>
+    /* Transição suave de cor de fundo, etc. */
+    :root {
+      --transition-speed: 0.3s;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      color: rgb(181, 181, 181);
+      background-color: #000717;
+    }
+
+    /* HEADER (NAV) 
+    */
+    .nav {
+      height: 100px;
+      border: none;
+      border-radius: 1px;
+      box-shadow: #1f3566 0px 0px 15px 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px; /* Padding ajustado */
+      position: relative; /* Necessário para o menu mobile */
+      z-index: 100; /* Garante que o header fique na frente */
+    }
+
+    .logo img {
+      height: 100px;
+    }
+    
+    /* --- INÍCIO: ESTILOS DO MENU HAMBÚRGUER --- */
+
+    .hamburger-icon {
+      display: flex; /* Por padrão, aparece no mobile */
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 101; /* Fica acima do menu */
+    }
+
+    .hamburger-icon .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all var(--transition-speed) ease-in-out;
+    }
+    
+    /* Animação do "X" quando o menu está ativo */
+    .hamburger-icon.active .bar:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+    .hamburger-icon.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-icon.active .bar:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* Estilo do Menu Mobile (escondido por padrão) */
+    .box-menu {
+      /* Fica em tela cheia, por cima de tudo */
+      position: fixed;
+      top: 0;
+      right: -100%; /* Começa fora da tela, à direita */
+      width: 100%;
+      height: 100vh; /* 100% da altura da tela */
+      background-color: #000717; /* Mesmo fundo do body */
+      
+      /* Centraliza os links do menu */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      transition: right var(--transition-speed) ease-in-out;
+    }
+
+    /* Classe que o JavaScript vai adicionar para mostrar o menu */
+    .box-menu.show-menu {
+      right: 0; /* Puxa o menu para dentro da tela */
+    }
+
+    .menu {
+      list-style: none;
+      padding-left: 0;
+      /* No mobile, os itens ficam em coluna */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .menu li {
+      margin: 20px 0; /* Espaçamento vertical no menu mobile */
+      padding: 10px;
+      background-color: #03071145;
+      border-radius: 3px;
+      border: solid rgba(255, 255, 255, 0.109) 0.1px;
+      min-width: 150px; /* Largura mínima para os botões */
+      text-align: center;
+    }
+    
+    /* --- FIM: ESTILOS DO MENU HAMBÚRGUER --- */
+
+
+    .menu li a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: bold;
+      display: block; /* Faz o link ocupar todo o <li> */
+      /* EFEITO HOVER: Adiciona transição */
+      transition: color var(--transition-speed) ease;
+    }
+    
+    /* EFEITO HOVER: Muda a cor do link */
+    .menu li a:hover {
+      color: #0eb3ff;
+    }
+
+    .menu .buy a {
+      color: white;
+    }
+    
+    .menu .buy {
+      color: white;
+      background-color: #0eb3ff;
+      box-shadow: #0eb3ff80 0px 0px 40px 0.5px;
+      /* EFEITO HOVER: Adiciona transição */
+      transition: all var(--transition-speed) ease;
+    }
+    
+    /* EFEITO HOVER: Escala o botão e aumenta o brilho */
+    .menu .buy:hover {
+      transform: scale(1.05);
+      box-shadow: #0eb3ff 0px 0px 50px 2px;
+    }
+
+
+    /* SEÇÃO HERO (INÍCIO)
+    */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.2;
+    }
+    
+    .hero h1 span {
+      color: rgb(71, 71, 246);
+    }
+
+    .hero p {
+      text-align: center;
+      color: rgb(151, 149, 149);
+      max-width: 600px;
+    }
+
+    /* BOTÃO (CALL TO ACTION) 
+    */
+    .button {
+      margin-top: 50px;
+      background-color: rgb(0, 174, 255);
+      padding: 20px 30px;
+      border-radius: 38px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      box-shadow: #0eb3ff 0px 0px 15px 0.5px;
+      text-decoration: none;
+      display: inline-block;
+      /* EFEITO HOVER: Adiciona transição */
+      transition: all var(--transition-speed) ease;
+    }
+    
+    /* EFEITO HOVER: Escala o botão e aumenta o brilho */
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: #0eb3ff 0px 0px 30px 2px;
+    }
+
+    /* BOTÃO FLUTUANTE (WHATSAPP)
+    */
+    .zap {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 90; /* Abaixo do menu header */
+      /* EFEITO HOVER: Adiciona transição */
+      transition: transform var(--transition-speed) ease;
+    }
+
+    /* EFEITO HOVER: Escala o botão do Zap */
+    .zap:hover {
+        transform: scale(1.1);
+    }
+
+    .zap a img {
+      width: 60px; 
+      box-shadow: rgba(2, 255, 2, 0.426) 0px 0px 60px 0.3px;
+      border-radius: 100px;
+    }
+
+    /* SEÇÃO SERVIÇOS 
+    */
+    main {
+      padding-top: 80px;
+    }
+
+    .header {
+      margin-top: 100px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .card {
+      background: #7378840a;
+      text-align: center;
+      flex-basis: 300px;
+      flex-grow: 1;
+      max-width: 100%;
+      padding: 20px;
+      margin: 0;
+      border-radius: 8px;
+      border: solid 0.1px #182237;
+      box-shadow: #0a7db13c 0px 0px 30px 0px;
+      /* EFEITO HOVER: Adiciona transição */
+      transition: all var(--transition-speed) ease;
+    }
+    
+    /* EFEITO HOVER: Levanta o card e aumenta o brilho */
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: #0a7db188 0px 5px 40px 0px;
+    }
+
+    .card h4 {
+      color: rgb(207, 207, 207);
+    }
+    
+    footer {
+        text-align: center;
+        padding: 50px 20px;
+        margin-top: 50px;
+        border-top: 1px solid #1f3566;
+    }
+
+    /* =========================================
+      MEDIA QUERIES (Ajustes para telas maiores)
+      =========================================
+    */
+
+    @media (min-width: 768px) {
+      .nav {
+        padding: 0 40px; 
+      }
+      
+      /* Esconde o ícone hambúrguer no desktop */
+      .hamburger-icon {
+        display: none;
+      }
+      
+      /* Restaura o menu desktop */
+      .box-menu {
+        position: static; /* Posição normal */
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        transition: none; /* Remove transição */
+      }
+      
+      .menu {
+        margin-right: 80px;
+        flex-direction: row; /* Itens em linha no desktop */
+      }
+      
+      .menu li {
+        margin: 0; /* Remove margem vertical */
+        margin-right: 10px; /* Adiciona margem lateral */
+        min-width: auto; /* Remove largura mínima */
+      }
+      
+      .menu .buy {
+        margin-right: 0;
+      }
+
+      .hero {
+        margin-top: 80px;
+      }
+
+      .hero h1 {
+        font-size: 50px; 
+      }
+      
+      .card {
+        max-width: 320px; 
+      }
+
+      .zap {
+        bottom: 40px;
+        right: 40px;
+      }
+
+      .zap a img {
+        width: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="logo"><img src="/img/logo-semfundo.png" alt="Logo da Technosup"></div>
+    
+    <div class="hamburger-icon" id="hamburger-icon">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    
+    <div class="box-menu" id="nav-menu">
+      <ul class="menu">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li class.buy"><a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20com%20um%20t%C3%A9cnico.">Comprar</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <div class="hero" id="inicio">
+    <h1>Computador lento? Com vírus? <br><span>Nós resolvemos</span></h1>
+    <div>
+      <p>Soluções completas em tecnologia para deixar seu equipamento como novo.</p>
+      <p style="margin: -10px;">Atendimento rápido e de confiança.</p>
+    </div>
+    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20com%20um%20t%C3%A9cnico." 
+       class="button" 
+       id="cta-principal" 
+       target="_blank">
+      FALAR COM TÉCNICO
+    </a>
+  </div>
+  
+  <div class="zap">
+    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20preciso%20de%20ajuda." target="_blank">
+      <img src="/img/freepik__upload__79318.png" alt="Link para WhatsApp">
+    </a>
+  </div>
+  
+  <main id="servicos">
+    <div class="header">
+      <h1>Nossos Serviços</h1>
+      <p>Soluções diretas para os problemas mais comuns.</p>
+    </div>
+    
+    <div class="container">
+      <div class="card">
+        <h4>Diagnóstico Técnico</h4>
+        <p>Análise completa para um orçamento honesto e preciso. Saiba exatamente o que precisa ser feito.</p>
+      </div>
+      <div class="card">
+        <h4>Higienização Completa de Computadores e Notebooks</h4>
+        <p>Removemos poeira e resíduos que causam superaquecimento e lentidão, prolongando a vida útil do seu PC.</p>
+      </div>
+      <div class="card">
+        <h4>Montagem de PCs e troca de peças</h4>
+        <p>Seja para trabalho pesado ou para jogos, montamos a máquina ideal ou atualizamos a que você já tem.</p>
+      </div>
+      <div class="card">
+        <h4>Formatação, troca de Sistema Operacional e Otimização</h4>
+        <p>A solução completa: formatamos para eliminar erros e otimizamos para garantir a velocidade.</p>
+      </div>
+      <div class="card">
+        <h4>Remoção de Vírus e Malware</h4>
+        <p>Proteja seus dados pessoais e bancários. Removemos todas as ameaças e blindamos seu sistema.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer id="contato">
+      <p>Technosup © 2025 - Todos os direitos reservados.</p>
+      <p>Entre em contato: (12) 99606-5673 | tecnosuporte012@gmail.com</p>
+  </footer>
+
+  <script>
+    // 1. Pega os elementos do HTML
+    const hamburger = document.getElementById('hamburger-icon');
+    const navMenu = document.getElementById('nav-menu');
+
+    // 2. Adiciona um "ouvinte" de clique no ícone
+    hamburger.addEventListener('click', () => {
+      // 3. Adiciona/Remove a classe 'active' no ícone (para virar "X")
+      hamburger.classList.toggle('active');
+      // 4. Adiciona/Remove a classe 'show-menu' no menu (para mostrar/esconder)
+      navMenu.classList.toggle('show-menu');
+    });
+
+    /* --- NOVO CÓDIGO PARA FECHAR O MENU AO CLICAR NO LINK --- */
+
+    // 5. Pega TODOS os links que estão dentro do menu
+    const navLinks = document.querySelectorAll('#nav-menu .menu a');
+
+    // 6. Cria uma função simples para fechar o menu
+    function fecharMenu() {
+      hamburger.classList.remove('active'); // Remove o "X"
+      navMenu.classList.remove('show-menu'); // Esconde o menu
+    }
+
+    // 7. Adiciona o "ouvinte" de clique a CADA link do menu
+    navLinks.forEach(link => {
+      link.addEventListener('click', fecharMenu);
+    });
+
+  </script>
+
+</body>
+</html>
