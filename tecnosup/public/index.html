@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Technosup </title>
+  <title>Tecnosup </title>
+  
   <style>
     /* Transição suave de cor de fundo, etc. */
     :root {
@@ -321,22 +322,107 @@
       .card {
         max-width: 320px; 
       }
+/* --- ESTILOS DO MENU DE ESCOLHA WHATSAPP --- */
+.whatsapp-options {
+  display: none; /* Escondido por padrão */
+  position: fixed;
+  bottom: 100px; /* Acima do botão flutuante */
+  right: 30px;
+  background-color: #030711;
+  border: 1px solid #0eb3ff;
+  border-radius: 10px;
+  padding: 10px;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: #0eb3ff40 0px 0px 20px;
+  z-index: 91;
+  transition: all 0.3s ease;
+}
 
-      .zap {
-        bottom: 40px;
-        right: 40px;
-      }
+.whatsapp-options.show {
+  display: flex; /* Aparece quando tem a classe .show */
+  animation: fadeIn 0.3s;
+}
 
-      .zap a img {
-        width: 80px;
-      }
+.whatsapp-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.whatsapp-link:hover {
+  background-color: #0eb3ff;
+  color: #000;
+}
+
+/* --- ESTILOS DA SEÇÃO DE REDES SOCIAIS --- */
+.social-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #03071145; /* Levemente diferente do fundo */
+  margin-top: 50px;
+}
+
+.social-section h3 {
+  color: rgb(207, 207, 207);
+  margin-bottom: 20px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #0eb3ff;
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: #0eb3ff20 0px 0px 10px;
+}
+
+.social-btn:hover {
+  background-color: #0eb3ff;
+  color: #000717;
+  transform: scale(1.1);
+  box-shadow: #0eb3ff 0px 0px 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .whatsapp-options {
+    right: 40px;
+    bottom: 130px;
+  }
+}
+      
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
   <header class="nav">
-    <div class="logo"><img src="/img/logo-semfundo.png" alt="Logo da Technosup"></div>
+    <div class="logo"><img src="./img/logo-semfundo.png" alt="Logo da Technosup"></div>
     
     <div class="hamburger-icon" id="hamburger-icon">
       <span class="bar"></span>
@@ -348,7 +434,9 @@
       <ul class="menu">
         <li><a href="#inicio">Início</a></li>
         <li><a href="#servicos">Serviços</a></li>
-        <li class.buy"><a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20com%20um%20t%C3%A9cnico.">Comprar</a></li>
+        <li class="buy">
+          <a href="javascript:void(0)" class="whatsapp-trigger">Comprar</a>
+        </li>
       </ul>
     </div>
   </header>
@@ -359,18 +447,28 @@
       <p>Soluções completas em tecnologia para deixar seu equipamento como novo.</p>
       <p style="margin: -10px;">Atendimento rápido e de confiança.</p>
     </div>
-    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20gostaria%20de%20falar%20com%20um%20t%C3%A9cnico." 
-       class="button" 
-       id="cta-principal" 
-       target="_blank">
+    <a href="javascript:void(0)" 
+      class="button whatsapp-trigger" 
+      id="cta-principal">
       FALAR COM TÉCNICO
     </a>
   </div>
   
-  <div class="zap">
-    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%21%20Vi%20seu%20site%20e%20preciso%20de%20ajuda." target="_blank">
-      <img src="/img/freepik__upload__79318.png" alt="Link para WhatsApp">
+  <div class="zap-container">
+  <div class="whatsapp-options" id="whatsapp-menu">
+    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%20Abra%C3%A3o%2C%20vim%20pelo%20site%21" target="_blank" class="whatsapp-link">
+      <i class="fa-brands fa-whatsapp"></i> Conversar com Abraão
     </a>
+    <a href="https://wa.me/5512991037897?text=Ol%C3%A1%20Vitor%2C%20vim%20pelo%20site%21" target="_blank" class="whatsapp-link">
+      <i class="fa-brands fa-whatsapp"></i> Conversar com Vitor
+    </a>
+  </div>
+
+  <div class="zap whatsapp-trigger" id="zap-trigger">
+    <a href="javascript:void(0)">
+      <img src="./img/freepik__upload__79318.png" alt="Link para WhatsApp">
+    </a>
+  </div>
   </div>
   
   <main id="servicos">
@@ -402,10 +500,26 @@
       </div>
     </div>
   </main>
-
+<section class="social-section">
+  <h3>Siga a Tecnosup</h3>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/tecnosup.crz?locale=pt_BR" target="_blank" class="social-btn" title="Facebook">
+      <i class="fa-brands fa-facebook-f"></i>
+    </a>
+    <a href="https://www.instagram.com/tecnosuporte/" target="_blank" class="social-btn" title="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+    <a href="https://www.tiktok.com/@tecnosup" target="_blank" class="social-btn" title="TikTok">
+      <i class="fa-brands fa-tiktok"></i>
+    </a>
+    <a href="https://www.youtube.com/@Tecnosup012" target="_blank" class="social-btn" title="YouTube">
+      <i class="fa-brands fa-youtube"></i>
+    </a>
+  </div>
+</section>
   <footer id="contato">
-      <p>Technosup © 2025 - Todos os direitos reservados.</p>
-      <p>Entre em contato: (12) 99606-5673 | tecnosuporte012@gmail.com</p>
+      <p>Tecnosup © 2025 - Todos os direitos reservados.</p>
+      <p>Entre em contato: (12) 99606-5673 - (12) 99103-7897 | tecnosuporte012@gmail.com</p>
   </footer>
 
   <script>
@@ -420,7 +534,34 @@
       // 4. Adiciona/Remove a classe 'show-menu' no menu (para mostrar/esconder)
       navMenu.classList.toggle('show-menu');
     });
+// --- CÓDIGO ATUALIZADO DO MENU WHATSAPP ---
+    
+    // 1. Seleciona o menu e TODOS os botões que devem abri-lo
+    const whatsappMenu = document.getElementById('whatsapp-menu');
+    const triggers = document.querySelectorAll('.whatsapp-trigger');
 
+    // 2. Adiciona o evento de clique em CADA botão encontrado
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault(); // Evita comportamento padrão de link
+        whatsappMenu.classList.toggle('show'); // Abre/Fecha o menu
+      });
+    });
+
+    // 3. Fecha o menu se clicar fora dele ou fora de qualquer botão
+    document.addEventListener('click', (e) => {
+      // Verifica se o clique NÃO foi no menu E NÃO foi em nenhum dos botões
+      let clicouNoBotao = false;
+      triggers.forEach(trigger => {
+        if (trigger.contains(e.target)) {
+          clicouNoBotao = true;
+        }
+      });
+
+      if (!whatsappMenu.contains(e.target) && !clicouNoBotao) {
+        whatsappMenu.classList.remove('show');
+      }
+    });
     /* --- NOVO CÓDIGO PARA FECHAR O MENU AO CLICAR NO LINK --- */
 
     // 5. Pega TODOS os links que estão dentro do menu
