@@ -3,582 +3,763 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tecnosup </title>
   
-  <style>
-    /* Transição suave de cor de fundo, etc. */
-    :root {
-      --transition-speed: 0.3s;
-    }
+  <title>Tecnosup | Soluções Digitais & Hardware</title>
+  <meta name="description" content="Transforme seu PC em uma máquina de alta performance. Especialistas em hardware, otimização e manutenção em Cruzeiro/SP.">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tecnosup | Performance & Segurança">
+  <meta property="og:description" content="Manutenção especializada, Scripts de Otimização e Hardware High-End. Agende agora!">
+  <meta property="og:image" content="./img/logo-semfundo.png">
+  <link rel="icon" type="image/png" href="./img/logo-semfundo.png">
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      color: rgb(181, 181, 181);
-      background-color: #000717;
-    }
-
-    /* HEADER (NAV) 
-    */
-    .nav {
-      height: 100px;
-      border: none;
-      border-radius: 1px;
-      box-shadow: #1f3566 0px 0px 15px 0.5px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px; /* Padding ajustado */
-      position: relative; /* Necessário para o menu mobile */
-      z-index: 100; /* Garante que o header fique na frente */
-    }
-
-    .logo img {
-      height: 100px;
-    }
-    
-    /* --- INÍCIO: ESTILOS DO MENU HAMBÚRGUER --- */
-
-    .hamburger-icon {
-      display: flex; /* Por padrão, aparece no mobile */
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      cursor: pointer;
-      z-index: 101; /* Fica acima do menu */
-    }
-
-    .hamburger-icon .bar {
-      width: 100%;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: all var(--transition-speed) ease-in-out;
-    }
-    
-    /* Animação do "X" quando o menu está ativo */
-    .hamburger-icon.active .bar:nth-child(1) {
-      transform: translateY(11px) rotate(45deg);
-    }
-    .hamburger-icon.active .bar:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger-icon.active .bar:nth-child(3) {
-      transform: translateY(-11px) rotate(-45deg);
-    }
-
-    /* Estilo do Menu Mobile (escondido por padrão) */
-    .box-menu {
-      /* Fica em tela cheia, por cima de tudo */
-      position: fixed;
-      top: 0;
-      right: -100%; /* Começa fora da tela, à direita */
-      width: 100%;
-      height: 100vh; /* 100% da altura da tela */
-      background-color: #000717; /* Mesmo fundo do body */
-      
-      /* Centraliza os links do menu */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      transition: right var(--transition-speed) ease-in-out;
-    }
-
-    /* Classe que o JavaScript vai adicionar para mostrar o menu */
-    .box-menu.show-menu {
-      right: 0; /* Puxa o menu para dentro da tela */
-    }
-
-    .menu {
-      list-style: none;
-      padding-left: 0;
-      /* No mobile, os itens ficam em coluna */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .menu li {
-      margin: 20px 0; /* Espaçamento vertical no menu mobile */
-      padding: 10px;
-      background-color: #03071145;
-      border-radius: 3px;
-      border: solid rgba(255, 255, 255, 0.109) 0.1px;
-      min-width: 150px; /* Largura mínima para os botões */
-      text-align: center;
-    }
-    
-    /* --- FIM: ESTILOS DO MENU HAMBÚRGUER --- */
-
-
-    .menu li a {
-      color: inherit;
-      text-decoration: none;
-      font-weight: bold;
-      display: block; /* Faz o link ocupar todo o <li> */
-      /* EFEITO HOVER: Adiciona transição */
-      transition: color var(--transition-speed) ease;
-    }
-    
-    /* EFEITO HOVER: Muda a cor do link */
-    .menu li a:hover {
-      color: #0eb3ff;
-    }
-
-    .menu .buy a {
-      color: white;
-    }
-    
-    .menu .buy {
-      color: white;
-      background-color: #0eb3ff;
-      box-shadow: #0eb3ff80 0px 0px 40px 0.5px;
-      /* EFEITO HOVER: Adiciona transição */
-      transition: all var(--transition-speed) ease;
-    }
-    
-    /* EFEITO HOVER: Escala o botão e aumenta o brilho */
-    .menu .buy:hover {
-      transform: scale(1.05);
-      box-shadow: #0eb3ff 0px 0px 50px 2px;
-    }
-
-
-    /* SEÇÃO HERO (INÍCIO)
-    */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 60px;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-      font-weight: bold;
-      margin: 0;
-      line-height: 1.2;
-    }
-    
-    .hero h1 span {
-      color: rgb(71, 71, 246);
-    }
-
-    .hero p {
-      text-align: center;
-      color: rgb(151, 149, 149);
-      max-width: 600px;
-    }
-
-    /* BOTÃO (CALL TO ACTION) 
-    */
-    .button {
-      margin-top: 50px;
-      background-color: rgb(0, 174, 255);
-      padding: 20px 30px;
-      border-radius: 38px;
-      color: white;
-      font-weight: bold;
-      font-size: 20px;
-      box-shadow: #0eb3ff 0px 0px 15px 0.5px;
-      text-decoration: none;
-      display: inline-block;
-      /* EFEITO HOVER: Adiciona transição */
-      transition: all var(--transition-speed) ease;
-    }
-    
-    /* EFEITO HOVER: Escala o botão e aumenta o brilho */
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: #0eb3ff 0px 0px 30px 2px;
-    }
-
-    /* BOTÃO FLUTUANTE (WHATSAPP)
-    */
-    .zap {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 90; /* Abaixo do menu header */
-      /* EFEITO HOVER: Adiciona transição */
-      transition: transform var(--transition-speed) ease;
-    }
-
-    /* EFEITO HOVER: Escala o botão do Zap */
-    .zap:hover {
-        transform: scale(1.1);
-    }
-
-    .zap a img {
-      width: 60px; 
-      box-shadow: rgba(2, 255, 2, 0.426) 0px 0px 60px 0.3px;
-      border-radius: 100px;
-    }
-
-    /* SEÇÃO SERVIÇOS 
-    */
-    main {
-      padding-top: 80px;
-    }
-
-    .header {
-      margin-top: 100px;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .card {
-      background: #7378840a;
-      text-align: center;
-      flex-basis: 300px;
-      flex-grow: 1;
-      max-width: 100%;
-      padding: 20px;
-      margin: 0;
-      border-radius: 8px;
-      border: solid 0.1px #182237;
-      box-shadow: #0a7db13c 0px 0px 30px 0px;
-      /* EFEITO HOVER: Adiciona transição */
-      transition: all var(--transition-speed) ease;
-    }
-    
-    /* EFEITO HOVER: Levanta o card e aumenta o brilho */
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: #0a7db188 0px 5px 40px 0px;
-    }
-
-    .card h4 {
-      color: rgb(207, 207, 207);
-    }
-    
-    footer {
-        text-align: center;
-        padding: 50px 20px;
-        margin-top: 50px;
-        border-top: 1px solid #1f3566;
-    }
-
-    /* =========================================
-      MEDIA QUERIES (Ajustes para telas maiores)
-      =========================================
-    */
-
-    @media (min-width: 768px) {
-      .nav {
-        padding: 0 40px; 
-      }
-      
-      /* Esconde o ícone hambúrguer no desktop */
-      .hamburger-icon {
-        display: none;
-      }
-      
-      /* Restaura o menu desktop */
-      .box-menu {
-        position: static; /* Posição normal */
-        width: auto;
-        height: auto;
-        background-color: transparent;
-        transition: none; /* Remove transição */
-      }
-      
-      .menu {
-        margin-right: 80px;
-        flex-direction: row; /* Itens em linha no desktop */
-      }
-      
-      .menu li {
-        margin: 0; /* Remove margem vertical */
-        margin-right: 10px; /* Adiciona margem lateral */
-        min-width: auto; /* Remove largura mínima */
-      }
-      
-      .menu .buy {
-        margin-right: 0;
-      }
-
-      .hero {
-        margin-top: 80px;
-      }
-
-      .hero h1 {
-        font-size: 50px; 
-      }
-      
-      .card {
-        max-width: 320px; 
-      }
-/* --- ESTILOS DO MENU DE ESCOLHA WHATSAPP --- */
-.whatsapp-options {
-  display: none; /* Escondido por padrão */
-  position: fixed;
-  bottom: 100px; /* Acima do botão flutuante */
-  right: 30px;
-  background-color: #030711;
-  border: 1px solid #0eb3ff;
-  border-radius: 10px;
-  padding: 10px;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: #0eb3ff40 0px 0px 20px;
-  z-index: 91;
-  transition: all 0.3s ease;
-}
-
-.whatsapp-options.show {
-  display: flex; /* Aparece quando tem a classe .show */
-  animation: fadeIn 0.3s;
-}
-
-.whatsapp-link {
-  color: white;
-  text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.whatsapp-link:hover {
-  background-color: #0eb3ff;
-  color: #000;
-}
-
-/* --- ESTILOS DA SEÇÃO DE REDES SOCIAIS --- */
-.social-section {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #03071145; /* Levemente diferente do fundo */
-  margin-top: 50px;
-}
-
-.social-section h3 {
-  color: rgb(207, 207, 207);
-  margin-bottom: 20px;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 1px solid #0eb3ff;
-  color: white;
-  font-size: 24px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: #0eb3ff20 0px 0px 10px;
-}
-
-.social-btn:hover {
-  background-color: #0eb3ff;
-  color: #000717;
-  transform: scale(1.1);
-  box-shadow: #0eb3ff 0px 0px 20px;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (min-width: 768px) {
-  .whatsapp-options {
-    right: 40px;
-    bottom: 130px;
-  }
-}
-      
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    /* ================= 1. VARIÁVEIS & BASE ================= */
+    :root {
+      --primary-color: #0eb3ff;
+      --secondary-color: #7000ff;
+      --bg-dark: #030407;
+      --glass-bg: rgba(3, 4, 7, 0.95);
+      --glass-border: rgba(14, 179, 255, 0.2);
+      --text-main: #e0e0e0;
+      --header-height: 90px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); overflow-x: hidden; }
+    
+    body {
+      margin: 0; font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark); color: var(--text-main);
+      background-image: 
+        linear-gradient(rgba(14, 179, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 179, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+    a { text-decoration: none; color: inherit; transition: 0.3s; }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; padding: 0; margin: 0; }
+
+    /* ================= 2. COMPONENTES GERAIS ================= */
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: #fff; padding: 14px 30px; border-radius: 50px;
+      font-weight: bold; text-transform: uppercase; font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 15px rgba(14, 179, 255, 0.3); cursor: pointer;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(112, 0, 255, 0.5); }
+    
+    .button.outline { background: transparent; border: 1px solid var(--primary-color); box-shadow: none; }
+
+    .section-title { margin-bottom: 40px; text-align: center; }
+    .section-title h2 { font-size: 2rem; margin-bottom: 10px; color: #fff; }
+    .section-title p { color: #888; margin: 0; }
+
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { color: var(--primary-color); display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+    .custom-select {
+      width: 100%; padding: 12px; background: #0b1121; border: 1px solid #333; color: #fff;
+      border-radius: 8px; font-size: 16px; outline: none; appearance: none;
+    }
+    .custom-select:focus { border-color: var(--primary-color); }
+
+    /* ================= 3. HEADER (CENTRALIZADO) ================= */
+    .nav {
+      height: var(--header-height); padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: var(--glass-bg); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    
+    .logo img { height: 55px; filter: drop-shadow(0 0 5px var(--primary-color)); }
+
+    .hamburger-icon { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2001; }
+    .hamburger-icon .bar { width: 30px; height: 3px; background-color: #fff; border-radius: 2px; transition: 0.3s; }
+    .hamburger-icon.open .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger-icon.open .bar:nth-child(2) { opacity: 0; }
+    .hamburger-icon.open .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .box-menu {
+      display: flex; align-items: center; flex-grow: 1; justify-content: flex-end;
+    }
+
+    .menu { 
+      display: flex; gap: 40px; margin: 0 auto; align-items: center; 
+    }
+    
+    .menu a { 
+      font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; position: relative; 
+    }
+    .menu a:hover { color: var(--primary-color); }
+    .menu a::after {
+      content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+      background: var(--primary-color); transition: 0.3s;
+    }
+    .menu a:hover::after { width: 100%; }
+
+    .nav-btn-container .buy-btn {
+      padding: 10px 25px; border: 1px solid var(--primary-color); border-radius: 50px; 
+      color: var(--primary-color); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;
+    }
+    .nav-btn-container .buy-btn:hover {
+      background: var(--primary-color); color: #000; box-shadow: 0 0 20px var(--primary-color);
+    }
+
+    /* ================= 4. HERO SECTION ================= */
+    .hero {
+      position: relative; padding-top: 140px; padding-bottom: 80px; min-height: 90vh;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      padding-left: 20px; padding-right: 20px;
+    }
+    .hero-container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 50px; }
+    
+    .hero-text { flex: 1; }
+    .hero-text h2 { font-size: 3.5rem; margin: 0; color: #fff; line-height: 1.1; text-shadow: 0 0 30px rgba(14, 179, 255, 0.4); }
+    .hero-text h1 { font-size: 1.5rem; margin-top: 10px; color: var(--primary-color); font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 2px; }
+    .hero-text p {
+      font-size: 1.1rem; color: #aaa; margin: 30px 0; line-height: 1.6;
+      border-left: 3px solid var(--primary-color); padding-left: 20px;
+    }
+    .hero-actions { display: flex; gap: 15px; }
+
+    .hero-visual { flex: 1; display: flex; justify-content: center; }
+    .hero-logo-img { max-width: 100%; width: 400px; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 20px 40px rgba(14, 179, 255, 0.2)); }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+    /* ================= 5. SEÇÃO SOFTWARE v4.4 (CORRIGIDO PARA MOBILE) ================= */
+    .software-section {
+      padding: 80px 20px;
+      background: radial-gradient(circle at center, rgba(14, 179, 255, 0.08) 0%, #000717 70%);
+      border-top: 1px solid #1f3566;
+      border-bottom: 1px solid #1f3566;
+      overflow: hidden;
+    }
+
+    .software-container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 60px; align-items: center;
+    }
+
+    /* Texto Software */
+    .software-info { flex: 1 1 500px; min-width: 0; /* Impede estouro */ }
+    
+    .badge-container { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+    .badge-platinum { background: linear-gradient(45deg, #e0e0e0, #ffffff); color: #000; padding: 5px 12px; border-radius: 4px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; }
+    .badge-tech { border: 1px solid #0eb3ff; color: #0eb3ff; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; }
+
+    .software-info h2 { font-size: 2.5rem; margin-bottom: 20px; color: #fff; line-height: 1.2; }
+    .software-info p { color: #aaa; line-height: 1.6; font-size: 1.05rem; margin-bottom: 30px; }
+
+    .app-features { list-style: none; padding: 0; margin-bottom: 40px; }
+    .app-features li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
+    .app-features i { 
+      color: var(--primary-color); font-size: 1.2rem; margin-top: 3px;
+      background: rgba(14, 179, 255, 0.1); padding: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .app-features strong { color: #fff; display: block; margin-bottom: 4px; font-size: 1.1rem; }
+    .app-features span { color: #888; font-size: 0.9rem; }
+
+    /* Terminal Demo (CORREÇÃO DE CORTE) */
+    .software-demo { 
+      flex: 1 1 450px; 
+      position: relative; 
+      min-width: 0; /* CRUCIAL: Permite que o flex item encolha */
+      width: 100%; /* Garante largura total no mobile */
+    }
+    
+    .terminal-window {
+      background: #0c0c0c; border-radius: 8px; border: 1px solid #333; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      font-family: 'Consolas', monospace; width: 100%; 
+      transform: perspective(1000px) rotateY(-5deg); transition: 0.5s ease;
+    }
+    .terminal-window:hover { transform: perspective(1000px) rotateY(0deg); }
+    
+    .terminal-header { background: #1f1f1f; padding: 12px 15px; display: flex; gap: 8px; align-items: center; border-bottom: 1px solid #333; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+    .terminal-title { margin-left: 15px; color: #aaa; font-size: 0.8rem; }
+    
+    .terminal-body { 
+      padding: 20px; color: #ccc; font-size: 0.8rem; line-height: 1.5; 
+      white-space: pre; /* Mantém o formato do texto */
+      overflow-x: auto; /* CRUCIAL: Adiciona scroll horizontal SE precisar */
+    }
+    
+    .cmd-text { color: #cccccc; }
+    .cmd-highlight { color: #3b78ff; font-weight: bold; }
+    .cmd-input { color: #fff; animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ================= 6. SERVIÇOS & ORÇAMENTO ================= */
+    .services-section, .budget-section, .gallery-section { padding: 80px 20px; }
+
+    .cards-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .card {
+      flex: 1 1 300px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);
+      padding: 30px; border-radius: 15px; text-align: center; transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+
+    .budget-card {
+      max-width: 500px; margin: 0 auto; background: #0b1121; padding: 30px;
+      border-radius: 15px; border: 1px solid #1f3566;
+    }
+    .price-display {
+      background: rgba(14, 179, 255, 0.05); border: 1px dashed var(--primary-color);
+      padding: 15px; border-radius: 10px; margin: 20px 0; text-align: center;
+    }
+    .price-value { font-size: 2rem; color: #00ff88; display: block; }
+
+    /* ================= 7. REDES SOCIAIS ================= */
+    .social-section {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, rgba(0,7,23,0) 0%, rgba(14, 179, 255, 0.05) 100%);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px; max-width: 1100px; margin: 0 auto;
+    }
+
+    .social-card { display: flex; align-items: center; gap: 20px; padding: 10px; transition: 0.3s; }
+    
+    .social-circle {
+      width: 70px; height: 70px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: linear-gradient(135deg, #0b1121 0%, #1f3566 100%);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5); transition: all 0.4s ease;
+      position: relative; overflow: hidden; flex-shrink: 0;
+    }
+    .social-circle::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg) translateY(-100%); transition: 0.5s;
+    }
+    .social-card:hover .social-circle::before { transform: rotate(45deg) translateY(100%); }
+    .social-card:hover .social-circle {
+      border-color: var(--primary-color); background: var(--primary-color);
+      box-shadow: 0 0 25px var(--primary-color); transform: scale(1.1) rotate(5deg);
+    }
+
+    .social-box {
+      flex: 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(14, 179, 255, 0.2);
+      padding: 15px 20px; border-radius: 4px; position: relative;
+    }
+    .social-box::after { content: ''; position: absolute; left: 0; top: 15px; bottom: 15px; width: 3px; background: var(--primary-color); }
+    .social-box h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: #fff; }
+    .social-box p { margin: 0; font-size: 0.85rem; color: #aaa; line-height: 1.4; }
+
+    /* ================= 8. GALERIA & FOOTER ================= */
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
+    .gallery-item { border-radius: 10px; overflow: hidden; border: 1px solid #333; position: relative; aspect-ratio: 16/9; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; width: 100%; padding: 15px; background: rgba(0,0,0,0.8);
+      transform: translateY(100%); transition: 0.3s; color: var(--primary-color); font-weight: bold; text-align: left;
+    }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+    footer { border-top: 1px solid #1f3566; padding: 40px 20px; text-align: center; color: #666; margin-top: 0; }
+
+    /* Modals */
+    .whatsapp-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+    .whatsapp-modal.show { display: flex; animation: fade 0.3s; }
+    .modal-content { background: #0b1121; padding: 30px; border-radius: 15px; border: 1px solid var(--primary-color); width: 90%; max-width: 350px; text-align: center; position: relative; }
+    .close-modal { position: absolute; top: 10px; right: 15px; color: #fff; font-size: 24px; cursor: pointer; }
+    .consultant-btn { display: flex; align-items: center; background: #1a233a; padding: 15px; margin: 10px 0; border-radius: 8px; color: #fff; border: 1px solid #333; }
+    .consultant-btn:hover { background: var(--primary-color); color: #000; }
+    
+    .zap-float {
+      position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; background: #25d366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff;
+      box-shadow: 0 0 15px rgba(37,211,102,0.4); z-index: 1500; cursor: pointer;
+    }
+    @keyframes fade { from {opacity:0} to {opacity:1} }
+
+    /* ================= 9. MEDIA QUERIES (RESPONSIVIDADE FIXADA) ================= */
+    @media (max-width: 900px) {
+      .nav { padding: 0 20px; }
+      .hamburger-icon { display: flex; }
+      
+      .box-menu {
+        position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+        background: #050a14; flex-direction: column; justify-content: center;
+        transition: 0.4s; box-shadow: -5px 0 20px rgba(0,0,0,0.8);
+        display: flex;
+      }
+      .box-menu.active { right: 0; }
+      
+      .menu { flex-direction: column; gap: 30px; margin: 0; } 
+      .nav-btn-container { margin-top: 30px; }
+
+      .hero-container { flex-direction: column-reverse; text-align: center; gap: 30px; }
+      .hero-text p { border-left: none; padding-left: 0; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { width: 100%; }
+      .hero-logo-img { width: 250px; }
+      
+      /* Ajuste Terminal Mobile */
+      .software-container { flex-direction: column; text-align: left; }
+      .terminal-window { transform: none; margin-top: 20px; }
+      
+      .social-grid { grid-template-columns: 1fr; }
+      .social-card { max-width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 { font-size: 2.2rem; }
+      .hero h1 { font-size: 1.2rem; }
+      .button { width: 100%; margin-bottom: 10px; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .logo img { height: 40px; }
+      /* Previne padding lateral excessivo */
+      .budget-section, .services-section, .hero, .software-section { padding-left: 15px; padding-right: 15px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      
+      /* Terminal fonte menor */
+      .terminal-body { font-size: 0.65rem; }
+    }
+    /* ================= NOVA SEÇÃO: PORTFÓLIO EM CONSTRUÇÃO ================= */
+    .construction-box {
+      background: rgba(11, 17, 33, 0.6);
+      border: 1px dashed rgba(14, 179, 255, 0.3); /* Borda pontilhada tech */
+      border-radius: 15px;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Animação das Engrenagens */
+    .gear-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+    }
+    
+    .gear-big {
+      font-size: 60px;
+      color: var(--primary-color);
+      position: absolute;
+      top: 0; left: 0;
+      animation: spin-right 4s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(14, 179, 255, 0.5));
+    }
+    
+    .gear-small {
+      font-size: 40px;
+      color: #fff;
+      position: absolute;
+      bottom: 0; right: 0;
+      animation: spin-left 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes spin-right { 100% { transform: rotate(360deg); } }
+    @keyframes spin-left { 100% { transform: rotate(-360deg); } }
+
+    /* Barra de Carregamento */
+    .loader-container {
+      width: 100%;
+      max-width: 300px;
+      height: 6px;
+      background: #1f3566;
+      border-radius: 3px;
+      margin: 20px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .loader-bar {
+      width: 40%;
+      height: 100%;
+      background: var(--primary-color);
+      position: absolute;
+      left: -40%;
+      box-shadow: 0 0 15px var(--primary-color);
+      animation: loading 2s infinite ease-in-out;
+    }
+
+    @keyframes loading {
+      0% { left: -40%; }
+      50% { left: 100%; }
+      100% { left: -40%; }
+    }
+
+    .status-text {
+      font-family: 'Consolas', monospace;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      margin-top: 10px;
+    }
+    .blink-dot { animation: blink 1s infinite; }
+  </style>
 </head>
 <body>
 
-  <header class="nav">
-    <div class="logo"><img src="./img/logo-semfundo.png" alt="Logo da Technosup"></div>
+  <nav class="nav">
+    <div class="logo"><img src="./img/logo-semfundo.png" alt="Tecnosup"></div>
     
-    <div class="hamburger-icon" id="hamburger-icon">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <div class="hamburger-icon" onclick="toggleMenu()">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </div>
-    
-    <div class="box-menu" id="nav-menu">
+
+    <div class="box-menu" id="mobile-menu">
+      
       <ul class="menu">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li class="buy">
-          <a href="javascript:void(0)" class="whatsapp-trigger">Comprar</a>
-        </li>
+        <li><a href="#inicio" onclick="toggleMenu()">Início</a></li>
+        <li><a href="#servicos" onclick="toggleMenu()">Serviços</a></li>
+        <li><a href="#software" onclick="toggleMenu()">App v4.4</a></li>
+        <li><a href="#social" onclick="toggleMenu()">Conecte-se</a></li>
+        <li><a href="#orcamento" onclick="toggleMenu()">Orçamento</a></li>
       </ul>
+
+      <div class="nav-btn-container">
+        <a href="#" onclick="openZapModal('padrão'); toggleMenu()" class="buy-btn">
+          Falar com Técnico
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-container">
+      <div class="hero-text reveal-left">
+        <h2>Tecnosup</h2>
+        <h1>SOLUÇÕES DIGITAIS</h1>
+        <p>Especialistas em otimização de sistemas, hardware high-end e manutenção profissional em Cruzeiro/SP.</p>
+        <div class="hero-actions">
+          <a href="#" onclick="openZapModal('padrão')" class="button">AGENDAR AGORA</a>
+          <a href="#servicos" class="button outline">NOSSOS SERVIÇOS</a>
+        </div>
+      </div>
+      <div class="hero-visual reveal-right">
+        <img src="./img/logo-semfundo.png" alt="Logo Tecnosup" class="hero-logo-img">
+      </div>
     </div>
   </header>
-  
-  <div class="hero" id="inicio">
-    <h1>Computador lento? Com vírus? <br><span>Nós resolvemos</span></h1>
-    <div>
-      <p>Soluções completas em tecnologia para deixar seu equipamento como novo.</p>
-      <p style="margin: -10px;">Atendimento rápido e de confiança.</p>
-    </div>
-    <a href="javascript:void(0)" 
-      class="button whatsapp-trigger" 
-      id="cta-principal">
-      FALAR COM TÉCNICO
-    </a>
-  </div>
-  
-  <div class="zap-container">
-  <div class="whatsapp-options" id="whatsapp-menu">
-    <a href="https://wa.me/5512996065673?text=Ol%C3%A1%20Abra%C3%A3o%2C%20vim%20pelo%20site%21" target="_blank" class="whatsapp-link">
-      <i class="fa-brands fa-whatsapp"></i> Conversar com Abraão
-    </a>
-    <a href="https://wa.me/5512991037897?text=Ol%C3%A1%20Vitor%2C%20vim%20pelo%20site%21" target="_blank" class="whatsapp-link">
-      <i class="fa-brands fa-whatsapp"></i> Conversar com Vitor
-    </a>
-  </div>
 
-  <div class="zap whatsapp-trigger" id="zap-trigger">
-    <a href="javascript:void(0)">
-      <img src="./img/freepik__upload__79318.png" alt="Link para WhatsApp">
-    </a>
-  </div>
-  </div>
+  <section class="software-section" id="software">
+    <div class="software-container">
+      
+      <div class="software-info reveal-left">
+        <div class="badge-container">
+           <span class="badge-platinum">PLATINUM v4.4</span>
+           <span class="badge-tech">EXCLUSIVO TECNOSUP</span>
+        </div>
+        
+        <h2>TRANSFORME SEU PC<br>EM UMA MÁQUINA NOVA</h2>
+        <p>Não é mágica, é engenharia. Criamos um script que executa, em segundos, o trabalho manual de horas de um técnico sênior. Veja ao lado o que cada função entrega para você.</p>
+        
+        <ul class="app-features">
+          <li>
+            <i class="fa-solid fa-hard-drive"></i>
+            <div>
+              <strong>Recuperação de Espaço</strong>
+              <span>Arquivos inúteis devoram seu HD. O script encontra e elimina gigabytes de lixo oculto.</span>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-gamepad"></i>
+            <div>
+              <strong>Jogos Fluídos (FPS)</strong>
+              <span>Desbloqueia a energia do processador para evitar quedas bruscas de quadros.</span>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-kit-medical"></i>
+            <div>
+              <strong>Auto-Reparo</strong>
+              <span>Seu Windows está dando erro? O App escaneia e conserta arquivos corrompidos sozinho.</span>
+            </div>
+          </li>
+        </ul>
+
+        <a href="#" onclick="openZapModal('script')" class="button">
+          <i class="fa-brands fa-whatsapp" style="margin-right:10px;"></i> QUERO OTIMIZAR AGORA
+        </a>
+      </div>
+      
+      <div class="software-demo reveal-right">
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="terminal-title">Administrator: TECNOAPP v4.4 (Platinum)</span>
+          </div>
+          <div class="terminal-body">
+            <div class="cmd-text">C:\Tecnosup> start Otimizador_Platinum.bat</div>
+            <br>
+            <div class="cmd-highlight">
+ _______________________________________________________
+|                                                       |
+|              TECNOAPP OTIMIZACAO - MENU               |
+|              VERSAO DO APP: 4.4 (Platinum)            |
+|_______________________________________________________|
+
+ Ola, bem-vindo. Selecione o que deseja ganhar hoje:
+
+ [1] LIMPEZA RAPIDA (Dia a dia)
+     - Mantem o PC leve e rapido para uso diario.
+
+ [2] LIMPEZA PROFUNDA (Extreme)
+     - RECUPERACAO MASSIVA: Libera ate 70GB de espaco.
+     - Remove atualizacoes velhas que pesam o sistema.
+
+ [3] OTIMIZACAO DE PERFORMANCE (Boost)
+     - FIM DOS TRAVAMENTOS: Estabiliza o FPS em jogos.
+     - Reduz o Input Lag e Ping para competitivo.
+
+ [4] CENTRAL DE REPAROS (Auto-Fix)
+     - Resolve telas azuis e erros de sistema sozinho.
+     - Conserta falhas de impressora e interface.
+
+ [0] SAIR DO APLICATIVO
+ _______________________________________________________
+            </div>
+            <br>
+            <div class="cmd-text">Digite o numero e pressione ENTER: <span class="cmd-input">_</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="budget-section reveal-bottom" id="orcamento">
+    <div class="section-title">
+      <h2>ORÇAMENTO RÁPIDO</h2>
+      <p>Tenha uma estimativa instantânea.</p>
+    </div>
+    <div class="budget-card">
+      <div class="form-group">
+        <label>Qual o serviço?</label>
+        <select id="service-type" class="custom-select">
+          <option value="-1">Selecione...</option>
+          <option value="0">Diagnóstico Técnico (Grátis)</option>
+          <option value="40">Limpeza Simples (R$ 40)</option>
+          <option value="80">Limpeza Complexa (R$ 80)</option>
+          <option value="100">Montagem PC (R$ 100+)</option>
+          <option value="50">Upgrade/Troca Peças (R$ 50+)</option>
+          <option value="60">Formatação Completa (R$ 60)</option>
+          <option value="30">Otimização Windows (R$ 30)</option>
+          <option value="30">Remoção de Vírus (R$ 30)</option>
+          <option value="90">Pendrive Bootável (R$ 90)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Urgência</label>
+        <select id="urgency" class="custom-select">
+          <option value="1">Normal (Prazo padrão)</option>
+          <option value="1.5">Urgente (Prioridade 24h +50%)</option>
+        </select>
+      </div>
+      <div class="price-display">
+        <span style="color:#aaa; font-size:0.8rem">Estimativa</span>
+        <span id="final-price" class="price-value">R$ 0,00</span>
+        <small id="disclaimer" style="display:none; color:#666; font-size:0.7rem;">*Valor inicial sujeito a análise técnica.</small>
+      </div>
+      <a href="javascript:void(0)" id="btn-schedule" onclick="openZapModal('orcamento')" class="button" style="width:100%; opacity:0.5; pointer-events:none;">
+        AGENDAR SERVIÇO
+      </a>
+    </div>
+  </section>
+
+  <section class="services-section reveal-bottom" id="servicos">
+    <div class="section-title">
+      <h2>ESPECIALIDADES</h2>
+      <p>O que fazemos de melhor para o seu equipamento.</p>
+    </div>
+    <div class="cards-container">
+      <div class="card">
+        <i class="fa-solid fa-stethoscope" style="font-size:30px; color:var(--primary-color); margin-bottom:15px;"></i>
+        <h4>Diagnóstico Avançado</h4>
+        <p style="font-size:0.9rem; color:#aaa;">Análise técnica precisa para identificar a raiz do problema sem "achismos".</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-microchip" style="font-size:30px; color:var(--primary-color); margin-bottom:15px;"></i>
+        <h4>Hardware & Montagem</h4>
+        <p style="font-size:0.9rem; color:#aaa;">Montagem de PCs Gamer, limpeza detalhada e cable management profissional.</p>
+      </div>
+      <div class="card">
+        <i class="fa-solid fa-rocket" style="font-size:30px; color:var(--primary-color); margin-bottom:15px;"></i>
+        <h4>Otimização de Sistema</h4>
+        <p style="font-size:0.9rem; color:#aaa;">Configuração fina do Windows, Drivers e BIOS para extrair máximo desempenho.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="social-section reveal-bottom" id="social">
+    <div class="section-title">
+      <h2>CONECTE-SE</h2>
+      <p>Acompanhe nosso trabalho e ofertas exclusivas.</p>
+    </div>
+    <div class="social-grid">
+      <div class="social-card">
+        <a href="https://www.instagram.com/tecnosuporte/" target="_blank" rel="noopener noreferrer" class="social-circle">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <div class="social-box">
+          <h3>Instagram</h3>
+          <p>Ofertas relâmpago de serviços, bastidores da bancada e dicas rápidas de hardware.</p>
+        </div>
+      </div>
+      <div class="social-card">
+        <a href="https://www.facebook.com/tecnosup.crz?locale=pt_BR" target="_blank" rel="noopener noreferrer" class="social-circle">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <div class="social-box">
+          <h3>Facebook</h3>
+          <p>Comunidade, avaliações de clientes e novidades sobre a empresa.</p>
+        </div>
+      </div>
+      <div class="social-card">
+        <a href="https://www.tiktok.com/@tecnosup" target="_blank" rel="noopener noreferrer" class="social-circle">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <div class="social-box">
+          <h3>TikTok</h3>
+          <p>Vídeos satisfatórios de limpeza, montagens aceleradas e humor tech.</p>
+        </div>
+      </div>
+      <div class="social-card">
+        <a href="https://www.youtube.com/@Tecnosup012" target="_blank" rel="noopener noreferrer" class="social-circle">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <div class="social-box">
+          <h3>YouTube</h3>
+          <p>Tutoriais aprofundados, benchmarks de jogos e reviews de peças.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   
-  <main id="servicos">
-    <div class="header">
-      <h1>Nossos Serviços</h1>
-      <p>Soluções diretas para os problemas mais comuns.</p>
+
+  <section class="gallery-section reveal-bottom">
+    <div class="section-title">
+      <h2>PORTFÓLIO</h2>
+      <p>Nossos cases de sucesso.</p>
     </div>
     
-    <div class="container">
-      <div class="card">
-        <h4>Diagnóstico Técnico</h4>
-        <p>Análise completa para um orçamento honesto e preciso. Saiba exatamente o que precisa ser feito.</p>
+    <div class="construction-box">
+      <div class="gear-container">
+        <i class="fa-solid fa-gear gear-big"></i>
+        <i class="fa-solid fa-gear gear-small"></i>
       </div>
-      <div class="card">
-        <h4>Higienização Completa de Computadores e Notebooks</h4>
-        <p>Removemos poeira e resíduos que causam superaquecimento e lentidão, prolongando a vida útil do seu PC.</p>
+
+      <h3 style="color:#fff; margin:0; font-size:1.5rem; letter-spacing:2px;">EM CONSTRUÇÃO</h3>
+      <p style="color:#aaa; max-width:400px; margin:10px 0;">Estamos compilando fotos de setups e manutenções recentes para mostrar a qualidade do nosso trabalho.</p>
+      
+      <div class="loader-container">
+        <div class="loader-bar"></div>
       </div>
-      <div class="card">
-        <h4>Montagem de PCs e troca de peças</h4>
-        <p>Seja para trabalho pesado ou para jogos, montamos a máquina ideal ou atualizamos a que você já tem.</p>
-      </div>
-      <div class="card">
-        <h4>Formatação, troca de Sistema Operacional e Otimização</h4>
-        <p>A solução completa: formatamos para eliminar erros e otimizamos para garantir a velocidade.</p>
-      </div>
-      <div class="card">
-        <h4>Remoção de Vírus e Malware</h4>
-        <p>Proteja seus dados pessoais e bancários. Removemos todas as ameaças e blindamos seu sistema.</p>
+      
+      <div class="status-text">
+        > Carregando novos projetos<span class="blink-dot">...</span>
       </div>
     </div>
-  </main>
-<section class="social-section">
-  <h3>Siga a Tecnosup</h3>
-  <div class="social-icons">
-    <a href="https://www.facebook.com/tecnosup.crz?locale=pt_BR" target="_blank" class="social-btn" title="Facebook">
-      <i class="fa-brands fa-facebook-f"></i>
-    </a>
-    <a href="https://www.instagram.com/tecnosuporte/" target="_blank" class="social-btn" title="Instagram">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-    <a href="https://www.tiktok.com/@tecnosup" target="_blank" class="social-btn" title="TikTok">
-      <i class="fa-brands fa-tiktok"></i>
-    </a>
-    <a href="https://www.youtube.com/@Tecnosup012" target="_blank" class="social-btn" title="YouTube">
-      <i class="fa-brands fa-youtube"></i>
-    </a>
-  </div>
-</section>
-  <footer id="contato">
-      <p>Tecnosup © 2025 - Todos os direitos reservados.</p>
-      <p>Entre em contato: (12) 99606-5673 - (12) 99103-7897 | tecnosuporte012@gmail.com</p>
+  </section>
+
+  <footer>
+    <p>Tecnosup © 2026 - Cruzeiro/SP</p>
   </footer>
 
+  <div class="zap-float" onclick="openZapModal('padrão')"><i class="fa-brands fa-whatsapp"></i></div>
+
+  <div class="whatsapp-modal" id="whatsapp-modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeZapModal()">&times;</span>
+      <h3>Escolha o Consultor</h3>
+      <a href="#" id="link-abraao" class="consultant-btn" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <strong>Abraão</strong>
+      </a>
+      <a href="#" id="link-vitor" class="consultant-btn" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> <strong>Vitor</strong>
+      </a>
+    </div>
+  </div>
+
   <script>
-    // 1. Pega os elementos do HTML
-    const hamburger = document.getElementById('hamburger-icon');
-    const navMenu = document.getElementById('nav-menu');
+    // Animações
+    ScrollReveal().reveal('.reveal-left', { origin: 'left', distance: '50px', duration: 1000, delay: 200 });
+    ScrollReveal().reveal('.reveal-right', { origin: 'right', distance: '50px', duration: 1000, delay: 200 });
+    ScrollReveal().reveal('.reveal-bottom', { origin: 'bottom', distance: '30px', duration: 800, delay: 200, interval: 100 });
 
-    // 2. Adiciona um "ouvinte" de clique no ícone
-    hamburger.addEventListener('click', () => {
-      // 3. Adiciona/Remove a classe 'active' no ícone (para virar "X")
-      hamburger.classList.toggle('active');
-      // 4. Adiciona/Remove a classe 'show-menu' no menu (para mostrar/esconder)
-      navMenu.classList.toggle('show-menu');
-    });
-// --- CÓDIGO ATUALIZADO DO MENU WHATSAPP ---
-    
-    // 1. Seleciona o menu e TODOS os botões que devem abri-lo
-    const whatsappMenu = document.getElementById('whatsapp-menu');
-    const triggers = document.querySelectorAll('.whatsapp-trigger');
-
-    // 2. Adiciona o evento de clique em CADA botão encontrado
-    triggers.forEach(trigger => {
-      trigger.addEventListener('click', (event) => {
-        event.preventDefault(); // Evita comportamento padrão de link
-        whatsappMenu.classList.toggle('show'); // Abre/Fecha o menu
-      });
-    });
-
-    // 3. Fecha o menu se clicar fora dele ou fora de qualquer botão
-    document.addEventListener('click', (e) => {
-      // Verifica se o clique NÃO foi no menu E NÃO foi em nenhum dos botões
-      let clicouNoBotao = false;
-      triggers.forEach(trigger => {
-        if (trigger.contains(e.target)) {
-          clicouNoBotao = true;
-        }
-      });
-
-      if (!whatsappMenu.contains(e.target) && !clicouNoBotao) {
-        whatsappMenu.classList.remove('show');
-      }
-    });
-    /* --- NOVO CÓDIGO PARA FECHAR O MENU AO CLICAR NO LINK --- */
-
-    // 5. Pega TODOS os links que estão dentro do menu
-    const navLinks = document.querySelectorAll('#nav-menu .menu a');
-
-    // 6. Cria uma função simples para fechar o menu
-    function fecharMenu() {
-      hamburger.classList.remove('active'); // Remove o "X"
-      navMenu.classList.remove('show-menu'); // Esconde o menu
+    // Menu Mobile
+    function toggleMenu() { 
+      document.getElementById('mobile-menu').classList.toggle('active');
+      document.querySelector('.hamburger-icon').classList.toggle('open');
     }
+    
+    // Modal WhatsApp
+    const modal = document.getElementById('whatsapp-modal');
+    const linkAbraao = document.getElementById('link-abraao');
+    const linkVitor = document.getElementById('link-vitor');
+    const numAbraao = "5512996065673"; const numVitor = "5512991037897";
+    let currentBudgetMsg = "";
 
-    // 7. Adiciona o "ouvinte" de clique a CADA link do menu
-    navLinks.forEach(link => {
-      link.addEventListener('click', fecharMenu);
-    });
+    function openZapModal(tipo) {
+      let msg = "";
+      if (tipo === 'padrão') msg = "Olá! Vim pelo site da Tecnosup e gostaria de atendimento.";
+      else if (tipo === 'script') msg = "Olá! Tenho interesse no Script TecnoApp v4.4 Platinum que vi no site.";
+      else if (tipo === 'orcamento') msg = currentBudgetMsg;
 
+      const encoded = encodeURIComponent(msg);
+      linkAbraao.href = `https://wa.me/${numAbraao}?text=${encoded}`;
+      linkVitor.href = `https://wa.me/${numVitor}?text=${encoded}`;
+      modal.classList.add('show');
+    }
+    function closeZapModal() { modal.classList.remove('show'); }
+    window.onclick = e => { if(e.target == modal) closeZapModal(); }
+
+    // Calculadora
+    const serviceSelect = document.getElementById('service-type');
+    const urgencySelect = document.getElementById('urgency');
+    const priceDisplay = document.getElementById('final-price');
+    const scheduleBtn = document.getElementById('btn-schedule');
+    const disclaimer = document.getElementById('disclaimer');
+
+    function updatePrice() {
+      const base = parseFloat(serviceSelect.value);
+      const mult = parseFloat(urgencySelect.value);
+      
+      if (base === -1) {
+        priceDisplay.innerText = "R$ 0,00"; scheduleBtn.style.opacity = "0.5"; scheduleBtn.style.pointerEvents = "none"; return;
+      }
+      const val = base * mult;
+      priceDisplay.innerText = val === 0 ? "Grátis" : val.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+      scheduleBtn.style.opacity = "1"; scheduleBtn.style.pointerEvents = "auto";
+      
+      disclaimer.style.display = (base === 100 || base === 50) ? "block" : "none";
+      
+      const sName = serviceSelect.options[serviceSelect.selectedIndex].text;
+      currentBudgetMsg = `Olá! Fiz uma simulação no site: *${sName}*. Valor estimado: *${priceDisplay.innerText}*.`;
+    }
+    serviceSelect.addEventListener('change', updatePrice);
+    urgencySelect.addEventListener('change', updatePrice);
   </script>
-
 </body>
 </html>
